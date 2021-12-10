@@ -35,7 +35,6 @@ router.get('/:username', (request, response) => {
         if(!userResponse) {
             response.status(404).send("User not found");
         }
-
         response.send(userResponse)
     })
     .catch((error) => response.status(500).send("Issue getting user"))

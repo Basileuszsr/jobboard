@@ -43,7 +43,7 @@ export default (props) => {
                     }
                     axios.post('/api/users', userData)
                         .then(response => {
-                            navigate("/pokemonSearch")
+                            navigate("/JobSearch")
                             console.log(response)
                         })
                         .catch(error => setError("Account Exists."));
