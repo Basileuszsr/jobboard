@@ -1,5 +1,5 @@
 const express = require('express');
-const pokemon = require('./routes/pokemon.js');
+const job = require('./routes/job.js');
 const users = require('./routes/user.js');
 const cors = require('cors')
 const mongoose = require('mongoose');
@@ -10,7 +10,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo');
 
 //Setup MongoDB Connection
-const mongoString = 'mongodb://127.0.0.1/pokemon_app'
+const mongoString = 'mongodb+srv://web:1@zsrwebdev.bup61.mongodb.net/jobboard?retryWrites=true&w=majority'
 mongoose.connect(mongoString, { useNewUrlParser: true })
 
 const mongoDB = mongoose.connection;
@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/pokemon', pokemon);  
+app.use('/api/job', job);  
 app.use('/api/users', users);
 // Note that it is common practice got backend APIs in Node to start with the api prefix
 // to distinguish them from frontend routes 

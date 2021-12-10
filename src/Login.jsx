@@ -41,14 +41,14 @@ export default (props) => {
                         setError("You must type in a password.");
                         return;
                     }
-                    axios.post('/api/users', userData)
+                    axios.post('/api/users/authenticate', userData)
                         .then(response => {
                             navigate("/pokemonSearch")
                             console.log(response)
                         })
-                        .catch(error => setError("Account Exists."));
+                        .catch(error => setError("Account doesn't Exists."));
                 }}
-            >Register New User</button>
+            >Login</button>
             {/* <button
                 onClick={
                     () => {

@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
-import PokemonDetails from './PokemonDetails';
-import PokemonList from './PokemonList';
-import PokemonSearch from './PokemonSearch';
-import reportWebVitals from './reportWebVitals';
+import JobDetails from './JobDetails';
+import JobList from './JobList';
+import JobSearch from './JobSearch';
 import Register from './Register';
-import PokemonTracker from './PokemonTracker';
+import JobTracker from './JobTracker';
 import Logout from './Logout';
+import Login from './Login';
+import reportWebVitals from './reportWebVitals';
 
 
 
@@ -17,10 +18,12 @@ ReactDOM.render(
     <Logout />
     <Routes>
       <Route path="/" element={<Register />} />
-      <Route path="/myPokemon" element={<PokemonTracker />} />
-      <Route path="/list" element={<PokemonList />} />
-      <Route path="/pokemonSearch/:searchQuery" element={<PokemonSearch />} />
-      <Route path="/pokemon/:pokemonName" element={<PokemonDetails />} />
+      <Route path="/signup" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/myJob" element={<JobTracker />} />
+      <Route path="/list" element={<JobList />} />
+      <Route path="/JobSearch" element={<JobSearch />} />
+      <Route path="/list/:jobName" element={<JobDetails />} />
     </Routes>
   </Router>
 ,
