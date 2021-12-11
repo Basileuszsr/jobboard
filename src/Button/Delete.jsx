@@ -1,10 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
-
-//TODO: delete button
 export default function Delete(props) {
     const navigate = useNavigate();
-    return (<button onClick={() => navigate('/')
+    const name = props.val;
+    return (<button onClick={() => {
+      axios.post('http://localhost:8000/api/job/delete/' + name)
+            .catch(error => console.log("Could not find Job"));
+      navigate('/');
+    }
   }>Delete</button>);
 }

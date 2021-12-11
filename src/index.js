@@ -10,6 +10,7 @@ import JobTracker from './JobTracker';
 import Login from './Login';
 import reportWebVitals from './reportWebVitals';
 import Home from './Button/Home';
+import UpdateJob from './UpdateJob';
 
 
 ReactDOM.render(
@@ -22,6 +23,7 @@ ReactDOM.render(
       <Route path="/myJob" element={<JobTracker />} />
       <Route path="/list" element={<JobList />} />
       <Route path="/list/:jobName" element={<JobDetails />} />
+      <Route path="/update/:jobid" element={<UpdateJob />} />
     </Routes>
   </Router>
 ,

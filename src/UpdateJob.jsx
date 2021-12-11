@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 
-export default function JobTracker(props) {
+export default function UpdateJob(props) {
+    const jobName = useParams().jobid;
     const navigate = useNavigate();
     const [jobForm, setJobForm] = useState({
         name: '',
@@ -14,8 +16,8 @@ export default function JobTracker(props) {
         owner: '',
         pDate: null,
     });
-    const [myJob, setMyJob] = useState([]);
     const [errorMsg, setError] = useState('');
+    //const [myJob, setMyJob] = useState([]);
     // function getMyJobs() {
     //     axios.get('/api/job/myJobs')
     //         .then(response => setMyJob(response.data))
@@ -78,10 +80,10 @@ export default function JobTracker(props) {
 
             <button onClick={
                 () => {
-                    axios.post('/api/job/create', jobForm)
+                    axios.post('/api/job/update/' + jobName, jobForm)
                     .then(response => {
                         //getMyJobs()
-                        navigate('/list/' + jobForm._id)
+                        navigate('/list/' + jobName)
                         console.log(response)
                     })
                     .catch(error => setError("Something Missing!"));

@@ -13,7 +13,7 @@ export default function() {
     function findJobDetails() {
         axios.get('http://localhost:8000/api/job/find/' + jobName)
             .then(response => setJob(response.data))
-            .then(error => console.log("Could not find Job"));
+            .catch(error => console.log("Could not find Job"));
     }
     useEffect(findJobDetails, []);
     function checkLogin() {
@@ -31,8 +31,8 @@ export default function() {
 
     const delEditComponent = 
     (job != null && loginName == job.owner) ? (<>
-        <Edit />
-        <Delete />
+        <Edit val={job._id}/>
+        <Delete val={job._id}/>
     </>) : (<div>Not your Job</div>);
     const jobComponent = job ? 
         (<>

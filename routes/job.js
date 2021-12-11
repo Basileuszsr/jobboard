@@ -58,4 +58,32 @@ router.post('/create', auth_middleware, (request, response) => {
     .catch(error => response.status(400).send(error))
 })
 
+router.post('/delete/:jobName', (request, response) => {
+  const jobName = request.params.jobName;
+  if(!jobName) {
+    return response.status(422).send("Missing data");
+  }
+  return JobAccessor.deleteJobByid(jobName)
+    .then((jobResponse) => {
+        if(!jobResponse) {
+            response.status(404).send("Job not found");
+        }
+        response.send(jobResponse);
+    })
+    .catch((error) => response.status(500).send("Issue getting job"))
+})
+
+router.post('/update/:jobName', auth_middleware, (request, response) => {
+  const id = request.params.jobName;
+  const job = request.body;
+  if(!job.name || !job.title || !job.location || !job.description || !job.email) {
+    return response.status(422).send("Missing data");
+  }
+  job.owner = request.username;
+  job.pDate = Date.now();
+  JobAccessor.updateJobByid(id, job)
+    .then(jobResponse => response.status(200).send(jobResponse))
+    .catch(error => response.status(400).send(error))
+})
+
 module.exports = router; // <== Look at our new friend, module.exports!
