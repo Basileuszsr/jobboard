@@ -20,7 +20,7 @@ export default function JobList() {
     })
     return (
         <div>
-            <h1>All jobs</h1>
+            <h1>Favorite Jobs</h1>
             {jobListComponent}
         </div>
     )

@@ -6,12 +6,15 @@ import Logout from './Button/Logout';
 import CreateJob from './Button/CreateJob';
 import Favorite from './Button/Favorite';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import Details from './Button/Details';
+import JobDetails from './JobDetails';
 
 function App() {
   const [formInput, setFormInput] = useState('');
   const [loginName, setLoginName] = useState('');
   const [job, setJob] = useState({
-    name: 'No job selected', title: '',
+    name: '', title: '',
   })
   const [errorMsg, setError] = useState('');
   const navigate = useNavigate();
@@ -45,7 +48,6 @@ function App() {
       }));
     // doSomething();
   }
-
   return (
     <div>
       {errorMsg}
@@ -67,6 +69,7 @@ function App() {
       <div>
       Job Location: {job.location}
       </div>
+      <Details val = {job.name}/>
     </div>
 
   );

@@ -16,19 +16,21 @@ export default function() {
             .then(error => console.log("Could not find Job"));
     }
     useEffect(findJobDetails, []);
-    function checkLogin() {
-        axios.get('/api/users/whoIsLoggedIn')
-            .then(response => setLoginName(response.data))
-            .catch(() => navigate('/'))
-    }
-    useEffect(checkLogin, []);
-    console.log(job);
+    // function checkLogin() {
+    //     axios.get('/api/users/whoIsLoggedIn')
+    //         .then(response => setLoginName(response.data))
+    //         .catch(() => navigate('/'))
+    // }
+    // useEffect(checkLogin, []);
     // const delEditComponent = loginName === job.owner ? (<>
     //     <Edit />
     //     <Delete />
     // </>) : (<div>Not your Job</div>);
     const jobComponent = job ? 
         (<>
+        <div>
+           Job owner: {job.owner} 
+        </div>
         <div>
            Job title: {job.title} 
         </div>
