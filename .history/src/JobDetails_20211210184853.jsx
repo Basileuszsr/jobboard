@@ -20,7 +20,7 @@ export default function() {
         axios.get('/api/users/whoIsLoggedIn')
             .then(response => setLoginName(response.data))
     }
-    useEffect(checkLogin, []);
+    // useEffect(checkLogin, []);
     // const delEditComponent = loginName === job.owner ? (<>
     //     <Edit />
     //     <Delete />

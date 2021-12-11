@@ -7,7 +7,6 @@ export default function Details(props) {
     const link = '/search/' + name;
     console.log(link);
     return (<button onClick={() => {
-        console.log(link);
         navigate(link);
     }
   }>Details</button>);

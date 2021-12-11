@@ -18,12 +18,16 @@ function App() {
   })
   const [errorMsg, setError] = useState('');
   const navigate = useNavigate();
+
+
   function checkLogin() {
       axios.get('/api/users/whoIsLoggedIn')
           .then(response => setLoginName(response.data))
           .catch(() => navigate('/'))
   }
   useEffect(checkLogin, []);
+
+
   const buttonComponent = loginName ?
   (<>
     <Favorite/>
@@ -33,12 +37,13 @@ function App() {
     <Lgin/>
     <SignUp/>
   </>)
+
+
   function onSearchButtonClick() {
     if (!formInput) {
       setError("You must type in a Job name.");
       return;
     }
-
     axios.get('/api/job/find/' + formInput)
       .then(response => setJob(response.data))
       .catch(error => setJob({
@@ -48,6 +53,18 @@ function App() {
       }));
     // doSomething();
   }
+
+
+//   const [allJob, setAllJob] = useState([]);
+//   function findAllJob() {
+//     axios.get('api/job/findAll')
+//         .then(response => {
+//             setAllJob(response.data)
+//         })
+//         .catch(error => console.error(error));
+// }
+//   useEffect(findAllJob, []);
+
   return (
     <div>
       {errorMsg}
