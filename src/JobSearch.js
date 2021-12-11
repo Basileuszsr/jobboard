@@ -13,9 +13,6 @@ import JobDetails from './JobDetails';
 function App() {
   const [formInput, setFormInput] = useState('');
   const [loginName, setLoginName] = useState('');
-  const [job, setJob] = useState({
-    name: '', title: '',
-  })
   const [errorMsg, setError] = useState('');
   const navigate = useNavigate();
 
@@ -37,31 +34,35 @@ function App() {
     <SignUp/>
   </>)
 
-
+  const [allJob, setAllJob] = useState([]);
   function onSearchButtonClick() {
     if (!formInput) {
       setError("You must type in a Job name.");
       return;
     }
-    axios.get('/api/job/find/' + formInput)
-      .then(response => setJob(response.data))
-      .catch(error => setJob({
+    axios.get('/api/job/findAllByName/' + formInput)
+      .then(response => setAllJob(response.data))
+      .catch(error => setAllJob([{
         name: "No job found",
         title: '',
         location: '',
-      }));
+      }]));
   }
 
-
-  // const [allJob, setAllJob] = useState([]);
-  // function findAllJob() {
-  //   axios.get('api/job/findAll')
-  //       .then(response => {
-  //           setAllJob(response.data)
-  //       })
-  //       .catch(error => console.error(error));
-  // }
-  // useEffect(findAllJob, []);
+  const jobListComponent = allJob.length == 0 ? (<div>No Results. Try other name.</div>) :allJob.map(job => {
+    return (<>
+      <div>
+      Job Name: {job.name}
+      </div>
+      <div>
+      Job Title: {job.title}
+      </div>
+      <div>
+      Job Location: {job.location}
+      </div>
+      <Details val = {job.name}/>
+    </>)
+})
 
   return (
     <div>
@@ -75,16 +76,7 @@ function App() {
       <button onClick={onSearchButtonClick}>
         Search for Job
       </button>
-      <div>
-      Job Name: {job.name}
-      </div>
-      <div>
-      Job Title: {job.title}
-      </div>
-      <div>
-      Job Location: {job.location}
-      </div>
-      <Details val = {job.name}/>
+      <div>{jobListComponent}</div>
     </div>
 
   );

@@ -9,6 +9,21 @@ router.get('/findAll', function(request, response) {
     .catch(error => response.status(400).send(error))
 })
 
+router.get('/findAllByName/:jobName', function(request, response) {
+  const jobName = request.params.jobName;
+  if(!jobName) {
+    return response.status(422).send("Missing data");
+  }
+  return JobAccessor.findJobsssByName(jobName)
+    .then((jobResponse) => {
+        if(!jobResponse) {
+            response.status(404).send("Job not found");
+        }
+        response.send(jobResponse);
+    })
+    .catch((error) => response.status(500).send("Issue getting job"))
+});
+
 router.get('/myJobs', auth_middleware, function(request, response) {
   return JobAccessor.findJobByOwner(request.username)
   .then(jobResponse => response.status(200).send(jobResponse))
