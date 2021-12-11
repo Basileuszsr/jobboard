@@ -16,16 +16,6 @@ export default function JobTracker(props) {
     });
     const [myJob, setMyJob] = useState([]);
     const [errorMsg, setError] = useState('');
-    // function getMyJobs() {
-    //     axios.get('/api/job/myJobs')
-    //         .then(response => setMyJob(response.data))
-    //         .catch(error => console.log(error))
-    // }
-    //useEffect(getMyJobs, []);
-    // const jobElement = [];
-    // for(let job of myJob) {
-    //     jobElement.push(<div>{job.name}</div>);
-    // }
     function checkLogin() {
         axios.get('/api/users/whoIsLoggedIn')
             .then(() => console.log("Success"))
@@ -81,8 +71,8 @@ export default function JobTracker(props) {
                     axios.post('/api/job/create', jobForm)
                     .then(response => {
                         //getMyJobs()
-                        navigate('/list/' + jobForm._id)
-                        console.log(response)
+                        navigate('/list');
+                        console.log("The respnod isss" + response)
                     })
                     .catch(error => setError("Something Missing!"));
                     }

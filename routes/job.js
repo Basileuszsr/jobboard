@@ -54,7 +54,7 @@ router.post('/create', auth_middleware, (request, response) => {
   job.owner = request.username;
   job.pDate = Date.now();
   JobAccessor.insertJob(request.body)
-    .then(jobResponse => response.status(200).send(jobResponse))
+    .then(jobResponse => response.status(200).send(job._id))
     .catch(error => response.status(400).send(error))
 })
 

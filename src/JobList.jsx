@@ -23,7 +23,7 @@ export default function JobList() {
     const jobListComponent = allJob.map(job => {
         return (<>
         <p></p>
-        <Link to={job._id}>{job.owner} {job.title} {job.location}</Link>
+        <Link to={job._id}>{job.name} {job.title} {job.location}</Link>
         </>)
     })
     return (

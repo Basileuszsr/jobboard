@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Delete from './Button/Delete';
 import Edit from './Button/Edit';
+import Favorite from './Button/Favorite';
 import { useNavigate } from 'react-router';
 
 export default function() {
@@ -21,14 +22,6 @@ export default function() {
             .then(response => setLoginName(response.data))
     }
     useEffect(checkLogin, []);
-    
-    if(job != null) {
-        console.log("job.owner "+ job.owner)
-        console.log("loginName " + loginName)
-        console.log(job != null)
-        console.log(loginName === job.owner)
-    }
-
     const delEditComponent = 
     (job != null && loginName == job.owner) ? (<>
         <Edit val={job._id}/>
@@ -36,6 +29,7 @@ export default function() {
     </>) : (<div>Not your Job</div>);
     const jobComponent = job ? 
         (<>
+        <Favorite />
         <div>
            Job owner: {job.owner} 
         </div>
