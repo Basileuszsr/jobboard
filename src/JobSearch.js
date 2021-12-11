@@ -49,7 +49,7 @@ function App() {
       }]));
   }
 
-  const jobListComponent = allJob.length == 0 ? (<div>No Results. Try other name.</div>) :allJob.map(job => {
+  const jobListComponent = allJob.length == 0 ? (<div>No Results.</div>) :allJob.map(job => {
     return (<>
       <div>
       Job Name: {job.name}
