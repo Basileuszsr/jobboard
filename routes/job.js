@@ -53,12 +53,12 @@ router.post('/create', auth_middleware, (request, response) => {
   }
   job.owner = request.username;
   job.pDate = Date.now();
-  JobAccessor.insertJob(request.body)
-    .then(jobResponse => response.status(200).send(job._id))
+  return JobAccessor.insertJob(request.body)
+    .then(jobResponse => response.status(200).send(jobResponse))
     .catch(error => response.status(400).send(error))
 })
 
-router.post('/delete/:jobName', (request, response) => {
+router.delete('/delete/:jobName', (request, response) => {
   const jobName = request.params.jobName;
   if(!jobName) {
     return response.status(422).send("Missing data");
@@ -73,7 +73,7 @@ router.post('/delete/:jobName', (request, response) => {
     .catch((error) => response.status(500).send("Issue getting job"))
 })
 
-router.post('/update/:jobName', auth_middleware, (request, response) => {
+router.put('/update/:jobName', auth_middleware, (request, response) => {
   const id = request.params.jobName;
   const job = request.body;
   if(!job.name || !job.title || !job.location || !job.description || !job.email) {

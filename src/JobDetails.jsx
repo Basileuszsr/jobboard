@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import Delete from './Button/Delete';
 import Edit from './Button/Edit';
 import Favorite from './Button/Favorite';
+import SetFav from './Button/SetFav';
 import { useNavigate } from 'react-router';
 
 export default function() {
@@ -29,7 +30,7 @@ export default function() {
     </>) : (<div>Not your Job</div>);
     const jobComponent = job ? 
         (<>
-        <Favorite />
+        <Favorite val={loginName}/>
         <div>
            Job owner: {job.owner} 
         </div>
@@ -59,6 +60,7 @@ export default function() {
         <div>
             {delEditComponent}
         </div>
+        <SetFav val={jobName} name={loginName}/>
     </>
     )
 }

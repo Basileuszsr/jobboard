@@ -84,4 +84,15 @@ router.post('/logout', function(req, res) {
     return res.send("Ok");
 })
 
+router.put('/updateUser/:userName', auth_middleware, (request, response) => {
+    const name = request.params.userName;
+    const user = request.body;
+    if(!user.username || !user.password) {
+      return response.status(422).send("Missing data");
+    }
+    UserModel.updateUserByName(name, user)
+      .then(userResponse => response.status(200).send(userResponse))
+      .catch(error => response.status(400).send(error))
+  })
+
 module.exports = router;

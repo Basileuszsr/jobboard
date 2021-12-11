@@ -71,8 +71,8 @@ export default function JobTracker(props) {
                     axios.post('/api/job/create', jobForm)
                     .then(response => {
                         //getMyJobs()
-                        navigate('/list');
-                        console.log("The respnod isss" + response)
+                        console.log(response)
+                        navigate('/list/' + response.data._id);
                     })
                     .catch(error => setError("Something Missing!"));
                     }

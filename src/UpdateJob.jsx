@@ -80,7 +80,7 @@ export default function UpdateJob(props) {
 
             <button onClick={
                 () => {
-                    axios.post('/api/job/update/' + jobName, jobForm)
+                    axios.put('/api/job/update/' + jobName, jobForm)
                     .then(response => {
                         //getMyJobs()
                         navigate('/list/' + jobName)

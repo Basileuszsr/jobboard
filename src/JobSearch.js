@@ -26,7 +26,7 @@ function App() {
 
   const buttonComponent = loginName ?
   (<>
-    <Favorite/>
+    <Favorite val={loginName}/>
     <CreateJob/>
     <Logout setLoginName={setLoginName}/>
   </>) : (<>

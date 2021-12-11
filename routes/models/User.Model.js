@@ -14,9 +14,14 @@ function findUserByUsername(username) {
     return UserModel.findOne({username}).exec();
 }
 
+function updateUserByName(username, data) {
+    return UserModel.updateOne({username: username}, {$set: data}).exec();
+}
+
 // Make sure to export a function after you create it!
 module.exports = {
     insertUser,
     getAllUsers,
     findUserByUsername,
+    updateUserByName,
 };
