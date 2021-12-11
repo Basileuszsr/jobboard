@@ -22,7 +22,6 @@ ReactDOM.render(
       <Route path="/myJob" element={<JobTracker />} />
       <Route path="/list" element={<JobList />} />
       <Route path="/list/:jobName" element={<JobDetails />} />
-      <Route path="/search/:jobName" element={<JobDetails />} />
     </Routes>
   </Router>
 ,

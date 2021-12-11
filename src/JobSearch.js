@@ -23,7 +23,6 @@ function App() {
   function checkLogin() {
       axios.get('/api/users/whoIsLoggedIn')
           .then(response => setLoginName(response.data))
-          .catch(() => navigate('/'))
   }
   useEffect(checkLogin, []);
 
@@ -51,19 +50,18 @@ function App() {
         title: '',
         location: '',
       }));
-    // doSomething();
   }
 
 
-//   const [allJob, setAllJob] = useState([]);
-//   function findAllJob() {
-//     axios.get('api/job/findAll')
-//         .then(response => {
-//             setAllJob(response.data)
-//         })
-//         .catch(error => console.error(error));
-// }
-//   useEffect(findAllJob, []);
+  // const [allJob, setAllJob] = useState([]);
+  // function findAllJob() {
+  //   axios.get('api/job/findAll')
+  //       .then(response => {
+  //           setAllJob(response.data)
+  //       })
+  //       .catch(error => console.error(error));
+  // }
+  // useEffect(findAllJob, []);
 
   return (
     <div>

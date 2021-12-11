@@ -15,6 +15,10 @@ function findJobByName(name) {
     return JobModel.findOne({name: name}).exec();
 }
 
+function findJobsssByName(name) {
+    return JobModel.find({name: name}).exec();
+}
+
 function findJobByOwner(owner) {
     return JobModel.find({
         owner: owner
@@ -26,4 +30,5 @@ module.exports = {
     insertJob,
     findJobByName,
     getAllJobs,
+    findJobsssByName,
 };

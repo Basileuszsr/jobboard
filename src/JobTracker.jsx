@@ -24,12 +24,12 @@ export default function JobTracker(props) {
             .catch(error => console.log(error))
     }
 
-    // function checkLogin() {
-    //     axios.get('/api/users/whoIsLoggedIn')
-    //         .then(() => console.log("Success"))
-    //         .catch(() => navigate('/'))
-    // }
-    // useEffect(checkLogin, []);
+    function checkLogin() {
+        axios.get('/api/users/whoIsLoggedIn')
+            .then(() => console.log("Success"))
+            .catch(() => navigate('/'))
+    }
+    useEffect(checkLogin, []);
 
     useEffect(getMyJobs, []);
     const jobElement = [];
