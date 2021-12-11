@@ -13,10 +13,10 @@ router.get('/findAll', function(request, response) {
         .catch(error => response.status(400).send(error))
 })
 
-// router.get('/whoIsLoggedIn', auth_middleware, function(request, response) {
-//     const username = request.session.username;
-//     return response.send(username);
-// })
+router.get('/whoIsLoggedIn', auth_middleware, function(request, response) {
+    const username = request.session.username;
+    return response.send(username);
+})
 
 // router.get('/whoIsLoggedInButWithoutMiddleware', function(request, response) {
 //     const username = request.session.username;

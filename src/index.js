@@ -7,22 +7,20 @@ import JobList from './JobList';
 import JobSearch from './JobSearch';
 import Register from './Register';
 import JobTracker from './JobTracker';
-import Logout from './Logout';
 import Login from './Login';
 import reportWebVitals from './reportWebVitals';
-
+import Home from './Button/Home';
 
 
 ReactDOM.render(
   <Router>
-    <Logout />
+    <Home />
     <Routes>
-      <Route path="/" element={<Register />} />
+      <Route path="/" element={<JobSearch />} />
       <Route path="/signup" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/myJob" element={<JobTracker />} />
       <Route path="/list" element={<JobList />} />
-      <Route path="/JobSearch" element={<JobSearch />} />
       <Route path="/list/:jobName" element={<JobDetails />} />
     </Routes>
   </Router>

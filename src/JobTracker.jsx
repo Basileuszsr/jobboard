@@ -32,16 +32,14 @@ export default function JobTracker(props) {
     // useEffect(checkLogin, []);
 
     useEffect(getMyJobs, []);
-
-
     const jobElement = [];
     for(let job of myJob) {
         jobElement.push(<div>{job.name}</div>);
     }
 
-
     return (
         <div>
+            
             {errorMsg}
             <h5>Job Name:</h5>
             <input value={jobForm.name} 
@@ -84,12 +82,15 @@ export default function JobTracker(props) {
             })} ></input>
 
             <button onClick={
-                () => axios.post('/api/job/create', jobForm)
+                () => {
+                    axios.post('/api/job/create', jobForm)
                     .then(response => {
                         getMyJobs()
+                        navigate('/list/' + jobForm.name)
                         console.log(response)
                     })
-                    .catch(error => setError("Something Missing!"))
+                    .catch(error => setError("Something Missing!"));
+                    }
             }>
                 Submit
             </button>

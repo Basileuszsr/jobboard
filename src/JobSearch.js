@@ -1,13 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import axios, { Axios } from 'axios';
+import Lgin from './Button/Lgin';
+import SignUp from './Button/SignUp';
+import Logout from './Button/Logout';
+import CreateJob from './Button/CreateJob';
+import Favorite from './Button/Favorite';
+import { useNavigate } from 'react-router';
 
 function App() {
   const [formInput, setFormInput] = useState('');
+  const [loginName, setLoginName] = useState('');
   const [job, setJob] = useState({
     name: 'No job selected', title: '',
   })
-  const [errorMsg, setError] = useState(null);
-
+  const [errorMsg, setError] = useState('');
+  const navigate = useNavigate();
+  function checkLogin() {
+      axios.get('/api/users/whoIsLoggedIn')
+          .then(response => setLoginName(response.data))
+          .catch(() => navigate('/'))
+  }
+  useEffect(checkLogin, []);
+  const buttonComponent = loginName ?
+  (<>
+    <Favorite/>
+    <CreateJob/>
+    <Logout/>
+  </>) : (<>
+    <Lgin/>
+    <SignUp/>
+  </>)
   function onSearchButtonClick() {
     if (!formInput) {
       setError("You must type in a Job name.");
@@ -18,7 +40,8 @@ function App() {
       .then(response => setJob(response.data))
       .catch(error => setJob({
         name: "No job found",
-        title: '', 
+        title: '',
+        location: '',
       }));
     // doSomething();
   }
@@ -31,6 +54,7 @@ function App() {
         setError(null);
         setFormInput(e.target.value)
       }} />
+      {buttonComponent}
       <button onClick={onSearchButtonClick}>
         Search for Job
       </button>
@@ -44,7 +68,7 @@ function App() {
       Job Location: {job.location}
       </div>
     </div>
- 
+
   );
 }
 
