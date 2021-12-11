@@ -21,10 +21,19 @@ export default function() {
             .then(response => setLoginName(response.data))
     }
     useEffect(checkLogin, []);
-    // const delEditComponent = loginName === job.owner ? (<>
-    //     <Edit />
-    //     <Delete />
-    // </>) : (<div>Not your Job</div>);
+    
+    if(job != null) {
+        console.log("job.owner "+ job.owner)
+        console.log("loginName " + loginName)
+        console.log(job != null)
+        console.log(loginName === job.owner)
+    }
+
+    const delEditComponent = 
+    (job != null && loginName == job.owner) ? (<>
+        <Edit />
+        <Delete />
+    </>) : (<div>Not your Job</div>);
     const jobComponent = job ? 
         (<>
         <div>
@@ -53,9 +62,9 @@ export default function() {
         <div>
             {jobComponent}
         </div>
-        {/* <div>
+        <div>
             {delEditComponent}
-        </div> */}
+        </div>
     </>
     )
 }

@@ -12,7 +12,7 @@ function getAllJobs() {
 }
 
 function findJobByName(name) {
-    return JobModel.findOne({name: name}).exec();
+    return JobModel.findOne({_id: name}).exec();
 }
 
 function findJobsssByName(name) {

@@ -28,7 +28,7 @@ function App() {
   (<>
     <Favorite/>
     <CreateJob/>
-    <Logout/>
+    <Logout setLoginName={setLoginName}/>
   </>) : (<>
     <Lgin/>
     <SignUp/>
@@ -60,7 +60,7 @@ function App() {
       <div>
       Job Location: {job.location}
       </div>
-      <Details val = {job.name}/>
+      <Details val = {job._id}/>
     </>)
 })
 

@@ -27,7 +27,7 @@ export default function JobTracker(props) {
     function checkLogin() {
         axios.get('/api/users/whoIsLoggedIn')
             .then(() => console.log("Success"))
-            .catch(() => navigate('/'))
+            .catch(() => navigate('/login'))
     }
     useEffect(checkLogin, []);
 
@@ -39,7 +39,6 @@ export default function JobTracker(props) {
 
     return (
         <div>
-            
             {errorMsg}
             <h5>Job Name:</h5>
             <input value={jobForm.name} 
