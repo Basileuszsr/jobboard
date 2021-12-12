@@ -5,11 +5,11 @@ import Delete from './Button/Delete';
 import Edit from './Button/Edit';
 import Favorite from './Button/Favorite';
 import SetFav from './Button/SetFav';
+import NoLoginFav from './Button/NoLoginFav';
 import { useNavigate } from 'react-router';
 
 export default function() {
     const jobName = useParams().jobName;
-    const navigate = useNavigate();
     const [job, setJob] = useState(null);
     const [loginName, setLoginName] = useState('');
     function findJobDetails() {
@@ -53,6 +53,7 @@ export default function() {
             Posting Date: {job.pDate}
         </div></>) :
         (<div> No Job found </div>);
+    const setFavComponent = (jobName != '' && loginName != '') ? (<SetFav val={jobName} name={loginName}/>) : (<NoLoginFav />);
     return (<>
         <div>
             {jobComponent}
@@ -60,7 +61,7 @@ export default function() {
         <div>
             {delEditComponent}
         </div>
-        <SetFav val={jobName} name={loginName}/>
+        {setFavComponent}
     </>
     )
 }

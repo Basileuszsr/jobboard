@@ -5,17 +5,13 @@ import SignUp from './Button/SignUp';
 import Logout from './Button/Logout';
 import CreateJob from './Button/CreateJob';
 import Favorite from './Button/Favorite';
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
 import Details from './Button/Details';
-import JobDetails from './JobDetails';
 
 function App() {
   const [formInput, setFormInput] = useState('');
   const [loginName, setLoginName] = useState('');
   const [errorMsg, setError] = useState('');
-  const navigate = useNavigate();
-
+  const [text, setText] = useState('Start Searching!');
 
   function checkLogin() {
       axios.get('/api/users/whoIsLoggedIn')
@@ -29,6 +25,7 @@ function App() {
     <Favorite val={loginName}/>
     <CreateJob/>
     <Logout setLoginName={setLoginName}/>
+    {loginName}
   </>) : (<>
     <Lgin/>
     <SignUp/>
@@ -41,7 +38,12 @@ function App() {
       return;
     }
     axios.get('/api/job/findAllByName/' + formInput)
-      .then(response => setAllJob(response.data))
+      .then(response => {
+        setAllJob(response.data);
+        if (response.data.length === 0) {
+          setText('No results');
+        }
+      })
       .catch(error => setAllJob([{
         name: "No job found",
         title: '',
@@ -49,7 +51,7 @@ function App() {
       }]));
   }
 
-  const jobListComponent = allJob.length == 0 ? (<div>No Results.</div>) :allJob.map(job => {
+  const jobListComponent = allJob.length == 0 ? (<div>{text}</div>) :allJob.map(job => {
     return (<>
       <div>
       Job Name: {job.name}
@@ -67,15 +69,18 @@ function App() {
   return (
     <div>
       {errorMsg}
-      <input type='text' value={formInput}
-      onChange={(e) => {
-        setError(null);
-        setFormInput(e.target.value)
-      }} />
       {buttonComponent}
-      <button onClick={onSearchButtonClick}>
-        Search for Job
-      </button>
+      <div>
+        <input type='text' value={formInput}
+        onChange={(e) => {
+          setError(null);
+          setFormInput(e.target.value)
+        }} />
+        
+        <button onClick={onSearchButtonClick}>
+          Search for Job
+        </button>
+      </div>
       <div>{jobListComponent}</div>
     </div>
 

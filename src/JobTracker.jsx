@@ -14,7 +14,6 @@ export default function JobTracker(props) {
         owner: '',
         pDate: null,
     });
-    const [myJob, setMyJob] = useState([]);
     const [errorMsg, setError] = useState('');
     function checkLogin() {
         axios.get('/api/users/whoIsLoggedIn')
