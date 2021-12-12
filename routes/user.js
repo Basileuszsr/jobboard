@@ -42,8 +42,6 @@ router.get('/:username', (request, response) => {
 
 router.post('/authenticate', function(request, response) {
     let { username, password } = request.body;
-    //password = JSON.stringify(password);
-    console.log(password);
     if (!username || !password) {
         return response.status(422).send('Must include both password and username');
     }

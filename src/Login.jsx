@@ -49,16 +49,6 @@ export default (props) => {
                         .catch(error => setError("Account doesn't Exists."));
                 }}
             >Login</button>
-            {/* <button
-                onClick={
-                    () => {
-                        axios.get('/api/users/whoIsLoggedIn')
-                            .then(response => setLoggedInName(response.data))
-                            .catch(error => console.log(error));
-                    }
-                }
-                >Who is logged in?</button>
-            {loggedInName && <div>{loggedInName}</div>} */}
         </div>
     );
 }
