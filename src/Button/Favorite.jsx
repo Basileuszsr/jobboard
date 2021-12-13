@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 
 export default function Favorite(props) {
     const navigate = useNavigate();
-    return (<button onClick={() => navigate('/list')
+    const name = props.val;
+    return (<button onClick={() => navigate('/user/' + name)
   }>Favorites</button>);
 }

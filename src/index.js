@@ -21,7 +21,7 @@ ReactDOM.render(
       <Route path="/signup" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/myJob" element={<JobTracker />} />
-      <Route path="/list" element={<JobList />} />
+      <Route path="/user/:uName" element={<JobList />} />
       <Route path="/list/:jobName" element={<JobDetails />} />
       <Route path="/update/:jobid" element={<UpdateJob />} />
     </Routes>
