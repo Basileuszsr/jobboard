@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import Details from './Button/Details';
 
 export default function JobList() {
     let newJob = [];
@@ -44,8 +45,16 @@ export default function JobList() {
 
     const jobListComponent = newJob.length !== 0 ? newJob.map(job => {
         return (<>
-        <p></p>
-        <Link to={job._id}>{job.name} {job.title} {job.location}</Link>
+            <div>
+                Job Name: {job.name}
+            </div>
+            <div>
+                Job Title: {job.title}
+            </div>
+            <div>
+                Job Location: {job.location}
+            </div>
+            <Details val = {job._id}/>
         </>) 
     }) : (<div>No Favorites</div>);
 
