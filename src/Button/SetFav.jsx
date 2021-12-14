@@ -4,7 +4,7 @@ import axios, { Axios } from 'axios';
 
 export default function SetFav(props) {
     const navigate = useNavigate();
-    const id = props.val;
+    const job = props.val;
     const name = props.name;
     const [text, setText] = useState('Like');
     const initState = {
@@ -33,12 +33,12 @@ export default function SetFav(props) {
     function getInfo() {
         console.log("Can you come in?");
         console.log(userInfo);
-        if (name !== '' && id !== undefined && userInfo.username !== '') {
+        if (name !== '' && job != undefined && userInfo.username !== '') {
             console.log("We did it!");
             console.log(name);
-            console.log(id);
+            console.log(job);
             console.log(userInfo);
-            const found = userInfo.favorites.find(fav => fav === id);
+            const found = userInfo.favorites.find(fav => fav._id == job._id);
             console.log("What we found: ")
             console.log(found);
             if (!found) {
@@ -64,8 +64,8 @@ export default function SetFav(props) {
             const newFav = [...userInfo.favorites];
             console.log("Before Like");
             console.log(newFav);
-            const found = newFav.find(fav => fav === id);
-            if (!found) newFav.push(id);
+            const found = newFav.find(fav => fav._id == job._id);
+            if (!found) newFav.push(job);
             const newState = {
                 ...userInfo,
                 favorites: newFav,
@@ -80,10 +80,10 @@ export default function SetFav(props) {
                     .catch(error => console.log("The error is " + error));
             setText('Liked!');
         } else if (text == 'Liked!') {
-            console.log("Liked" + id);
+            console.log("Liked" + job);
             const newFav = [...userInfo.favorites];
             for (let i = newFav.length - 1; i >= 0; i--) {
-                if (newFav[i] === id) {
+                if (newFav[i]._id == job._id) {
                     newFav.splice(i, 1);
                 }
             }

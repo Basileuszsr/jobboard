@@ -53,7 +53,7 @@ export default function() {
             Posting Date: {job.pDate}
         </div></>) :
         (<div> No Job found </div>);
-    const setFavComponent = (jobName != '' && loginName != '') ? (<SetFav val={jobName} name={loginName}/>) : (<NoLoginFav />);
+    const setFavComponent = (job != null && loginName != '') ? (<SetFav val={job} name={loginName}/>) : (<NoLoginFav />);
     return (<>
         <div>
             {jobComponent}

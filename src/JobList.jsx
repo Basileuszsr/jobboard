@@ -28,8 +28,16 @@ export default function JobList() {
 
     const jobListComponent = newJob.length !== 0 ? newJob.map(job => {
         return (<>
-            <p></p>
-            <Link to={'../list/' + job}>{job}</Link>
+            <div>
+            Job Name: {job.name}
+            </div>
+            <div>
+            Job Title: {job.title}
+            </div>
+            <div>
+            Job Location: {job.location}
+            </div>
+            <Details val = {job._id}/>
         </>) 
     }) : (<div>No Favorites</div>);
 
