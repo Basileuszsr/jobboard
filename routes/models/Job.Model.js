@@ -16,7 +16,7 @@ function findJobByName(name) {
 }
 
 function findJobsssByName(name) {
-    return JobModel.find({ "name": { "$regex": name, "$options": "i" } }).exec();
+    return JobModel.find({ "title": { "$regex": name, "$options": "i" } }).exec();
 }
 
 function findJobByOwner(owner) {
