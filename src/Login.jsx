@@ -13,7 +13,7 @@ export default (props) => {
     const [loggedInName, setLoggedInName] = useState('');
     return (
         <div>
-            <h3>Register Your Account</h3>
+            <h3>Log in Your Account</h3>
             {errorMsg}
             <h5>Username:</h5>
             <input value={userData.username} onChange={(e) => {
