@@ -10,6 +10,7 @@ import JobTracker from './JobTracker';
 import Login from './Login';
 import reportWebVitals from './reportWebVitals';
 import UpdateJob from './UpdateJob';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <Router>

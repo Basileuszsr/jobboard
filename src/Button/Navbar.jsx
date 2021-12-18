@@ -1,22 +1,27 @@
 import React from 'react';
-import Profile from './Profile';
+import * as ReactBootStrap from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 export default function Navbar(props) {
-  return (<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <Profile />
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/signup">Sign Up</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  return (
+    <Row>
+      <ReactBootStrap.Navbar bg="light" expand="lg">
+        <ReactBootStrap.Navbar.Brand href="/">
+          <img
+            src="https://www.kindpng.com/picc/m/133-1337806_job-vector-seeker-job-logo-magnifying-glass-png.png"
+            width="90"
+            height="70"
+          />{' '}
+        </ReactBootStrap.Navbar.Brand>
+        <ReactBootStrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <ReactBootStrap.Navbar.Collapse id="basic-navbar-nav">
+          <ReactBootStrap.Nav className="me-auto">
+            <ReactBootStrap.Nav.Link href="/">Home</ReactBootStrap.Nav.Link>
+            <ReactBootStrap.Nav.Link href="/login">Log In</ReactBootStrap.Nav.Link>
+            <ReactBootStrap.Nav.Link href="/signup">Sign Up</ReactBootStrap.Nav.Link>
+          </ReactBootStrap.Nav>
+        </ReactBootStrap.Navbar.Collapse>
+      </ReactBootStrap.Navbar>
+    </Row>
   );
 }

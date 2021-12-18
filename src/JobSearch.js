@@ -5,6 +5,9 @@ import Favorite from './Button/Favorite';
 import Details from './Button/Details';
 import Navbar from './Button/Navbar';
 import NavbarAdmin from './Button/NavbarAdmin';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function App() {
   const [formInput, setFormInput] = useState('');
@@ -18,9 +21,9 @@ function App() {
   }
   useEffect(checkLogin, []);
 
-  const buttonComponent = loginName ? 
-  <NavbarAdmin name={loginName} setLoginName={setLoginName}/> :
-  <Navbar />
+  const buttonComponent = loginName ?
+    <NavbarAdmin name={loginName} setLoginName={setLoginName} /> :
+    <Navbar />
 
   const [allJob, setAllJob] = useState([]);
   function onSearchButtonClick() {
@@ -58,30 +61,24 @@ function App() {
   })
 
   return (
-    <div>
-      <div class="input-group mb-3">
-        {errorMsg}
-        {buttonComponent}
-      </div>
-      <div>
-        <div class="input-group-prepend">
-          <input type='text' value={formInput}
-            onChange={(e) => {
-              setError(null);
-              setFormInput(e.target.value)
-            }} />
+    <>
+      {buttonComponent}
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control type="text" placeholder="Job Key Word" />
+        </Form.Group>
+        <Button variant="primary" type="submit" onClick={onSearchButtonClick}>
+          Submit
+        </Button>
+        <Container>
+          {errorMsg}
+        </Container>
+      </Form>
 
-          <button
-            class="btn btn-outline-secondary" type="button"
-            onClick={onSearchButtonClick}>
-            Search Jobs
-          </button>
-        </div>
-        <div>{jobListComponent}</div>
-      </div>
+      {jobListComponent}
       <Favorite val={loginName} />
       <CreateJob />
-    </div>
+    </>
   );
 }
 

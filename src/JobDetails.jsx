@@ -6,6 +6,7 @@ import Edit from './Button/Edit';
 import Favorite from './Button/Favorite';
 import SetFav from './Button/SetFav';
 import NoLoginFav from './Button/NoLoginFav';
+import NavbarAdmin from './Button/NavbarAdmin';
 
 export default function() {
     const jobName = useParams().jobName;
@@ -54,6 +55,7 @@ export default function() {
         (<div> No Job found </div>);
     const setFavComponent = (job != null && loginName != '') ? (<SetFav val={job} name={loginName}/>) : (<NoLoginFav />);
     return (<>
+        <NavbarAdmin />
         <div>
             {jobComponent}
         </div>

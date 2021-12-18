@@ -14,11 +14,11 @@ export default (props) => {
     const [errorMsg, setError] = useState('');
     const [loggedInName, setLoggedInName] = useState('');
     return (
-        <div>
+        <div id="main">
             <Navbar />
             <div class="text-center">
                 <form class="form-signin">
-                    <img class="mb-4" src="https://www.kindpng.com/picc/m/133-1337806_job-vector-seeker-job-logo-magnifying-glass-png.png" alt="" width="72" height="72" />
+                    <img class="mb-4" src="https://www.kindpng.com/picc/m/133-1337806_job-vector-seeker-job-logo-magnifying-glass-png.png" alt="" width="200" height="150" />
                     <h3 class="h3 mb-3 font-weight-normal">Log in Your Account</h3>
                     {errorMsg}
                     <input
