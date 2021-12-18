@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router';
+import './Css/SignIn.css';
 
 export default (props) => {
     const navigate = useNavigate();
@@ -12,19 +13,25 @@ export default (props) => {
     const [errorMsg, setError] = useState('');
     const [loggedInName, setLoggedInName] = useState('');
     return (
-        <div>
-            <h3>Register Your Account</h3>
+        <div class="text-center">
+            <form class="form-signin">
+            <img class="mb-4" src="https://www.kindpng.com/picc/m/133-1337806_job-vector-seeker-job-logo-magnifying-glass-png.png" alt="" width="200" height="150" />
+            <h3 class="h3 mb-3 font-weight-normal">Register Your Account</h3>
             {errorMsg}
-            <h5>Username:</h5>
-            <input value={userData.username} onChange={(e) => {
-                const username = e.target.value;
-                setUserData({
-                    ...userData,
-                    username: username
-                })
-            }}/>
-            <h5>Password:</h5>
-            <input value={userData.password} onChange={(e) => {
+            
+            <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="Username" placeholder="Enter username"
+                required autofocus
+                value={userData.username} onChange={(e) => {
+                    const username = e.target.value;
+                    setUserData({
+                        ...userData,
+                        username: username
+                    })
+                }
+                }/>
+            
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required
+                value={userData.password} onChange={(e) => {
                 const password = e.target.value;
                 setUserData({
                     ...userData,
@@ -32,6 +39,7 @@ export default (props) => {
                 })
             }} type='password' />
             <button
+                class="btn btn-lg btn-primary btn-block" type="submit"
                 onClick={() => {
                     if (!userData.username) {
                         setError("You must type in a username.");
@@ -49,6 +57,7 @@ export default (props) => {
                         .catch(error => setError("Account Exists."));
                 }}
             >Register New User</button>
+            </form>
             {/* <button
                 onClick={
                     () => {

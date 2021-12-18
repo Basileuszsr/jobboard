@@ -9,13 +9,12 @@ import Register from './Register';
 import JobTracker from './JobTracker';
 import Login from './Login';
 import reportWebVitals from './reportWebVitals';
-import Home from './Button/Home';
 import UpdateJob from './UpdateJob';
-
+import Navbar from './Button/Navbar';
 
 ReactDOM.render(
   <Router>
-    <Home />
+    <Navbar />
     <Routes>
       <Route path="/" element={<JobSearch />} />
       <Route path="/signup" element={<Register />} />
@@ -25,6 +24,7 @@ ReactDOM.render(
       <Route path="/list/:jobName" element={<JobDetails />} />
       <Route path="/update/:jobid" element={<UpdateJob />} />
     </Routes>
+
   </Router>
 ,
   document.getElementById('root')

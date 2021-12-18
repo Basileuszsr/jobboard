@@ -67,18 +67,20 @@ function App() {
 })
 
   return (
-    <div>
+    <div class="input-group mb-3">
       {errorMsg}
       {buttonComponent}
-      <div>
+      <div class="input-group-prepend">
         <input type='text' value={formInput}
         onChange={(e) => {
           setError(null);
           setFormInput(e.target.value)
         }} />
         
-        <button onClick={onSearchButtonClick}>
-          Search for Job
+        <button 
+        class="btn btn-outline-secondary" type="button"
+        onClick={onSearchButtonClick}>
+          Search Jobs
         </button>
       </div>
       <div>{jobListComponent}</div>
