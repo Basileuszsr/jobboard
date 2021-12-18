@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import Navbar from './Button/Navbar';
+import NavbarHome from './Button/NavbarHome';
 import './Css/SignIn.css';
 
 export default (props) => {
@@ -15,7 +15,7 @@ export default (props) => {
     const [loggedInName, setLoggedInName] = useState('');
     return (
         <div id="main">
-            <Navbar />
+            <NavbarHome />
             <div class="text-center">
                 <form class="form-signin">
                     <img class="mb-4" src="https://www.kindpng.com/picc/m/133-1337806_job-vector-seeker-job-logo-magnifying-glass-png.png" alt="" width="200" height="150" />

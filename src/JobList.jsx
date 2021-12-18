@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router';
-import NavbarAdmin from './Button/NavbarAdmin';
+import NavbarHome from './Button/NavbarHome';
 import Details from './Button/Details';
 import { useParams } from 'react-router';
 
@@ -44,7 +42,7 @@ export default function JobList() {
 
     return (
         <div>
-            <NavbarAdmin />
+            <NavbarHome />
             <h1>Favorite Jobs</h1>
             {jobListComponent}
         </div>

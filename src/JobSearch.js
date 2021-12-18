@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 import CreateJob from './Button/CreateJob';
 import Favorite from './Button/Favorite';
 import Details from './Button/Details';
 import Navbar from './Button/Navbar';
-import NavbarAdmin from './Button/NavbarAdmin';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 
 function App() {
   const [formInput, setFormInput] = useState('');
   const [loginName, setLoginName] = useState('');
   const [errorMsg, setError] = useState('');
+  const [allJob, setAllJob] = useState([]);
   const [text, setText] = useState('Start Searching!');
 
   function checkLogin() {
@@ -21,11 +22,6 @@ function App() {
   }
   useEffect(checkLogin, []);
 
-  const buttonComponent = loginName ?
-    <NavbarAdmin name={loginName} setLoginName={setLoginName} /> :
-    <Navbar />
-
-  const [allJob, setAllJob] = useState([]);
   function onSearchButtonClick() {
     if (!formInput) {
       setError("You must type in a Job name.");
@@ -46,38 +42,56 @@ function App() {
   }
 
   const jobListComponent = allJob.length == 0 ? (<div>{text}</div>) : allJob.map(job => {
-    return (<>
-      <div>
-        Job Name: {job.name}
-      </div>
-      <div>
-        Job Title: {job.title}
-      </div>
-      <div>
-        Job Location: {job.location}
-      </div>
-      <Details val={job._id} />
-    </>)
+    return (
+      <tr>
+        <td>
+          {job.name}
+        </td>
+        <td>
+          {job.title}
+        </td>
+        <td>
+          {job.location}
+        </td>
+        <td>
+          <Details val={job._id} />
+        </td>
+      </tr>
+    )
   })
 
   return (
     <>
-      {buttonComponent}
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type="text" placeholder="Job Key Word" />
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={onSearchButtonClick}>
-          Submit
-        </Button>
-        <Container>
-          {errorMsg}
-        </Container>
-      </Form>
-
-      {jobListComponent}
-      <Favorite val={loginName} />
-      <CreateJob />
+      <Navbar name={loginName} setLoginName={setLoginName} />
+      <Container>
+        <Form>
+          <Form.Group>
+            <Form.Control type="text" placeholder="Job Key Word"
+              onChange={e => {
+                setFormInput(e.target.value)
+              }} />
+            <Button type="submit" onClick={onSearchButtonClick}>Search</Button>
+          </Form.Group>
+          <Container>
+            {errorMsg}
+          </Container>
+        </Form>
+        <Table striped bordered >
+          <thead>
+            <tr>
+              <th>Job Name</th>
+              <th>Job Title</th>
+              <th>Job Location</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {jobListComponent}
+          </tbody>
+        </Table>
+        <Favorite val={loginName} />
+        <CreateJob />
+      </Container>
     </>
   );
 }
