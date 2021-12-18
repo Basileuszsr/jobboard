@@ -41,7 +41,20 @@ function App() {
       }]));
   }
 
-  const jobListComponent = allJob.length == 0 ? (<div>{text}</div>) : allJob.map(job => {
+  const jobListComponent = allJob.length == 0 ? (
+  <tr>
+    <td>
+      {text}
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+  ) : allJob.map(job => {
+    console.log(allJob.length)
     return (
       <tr>
         <td>

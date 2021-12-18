@@ -29,7 +29,7 @@ export default (props) => {
                     {errorMsg}
 
                     <Form.Control type="text" class="form-control" id="exampleInputUsername1" aria-describedby="Username" placeholder="Enter username"
-                        required autofocus
+                        required autoFocus
                         value={userData.username} onChange={(e) => {
                             const username = e.target.value;
                             setUserData({
