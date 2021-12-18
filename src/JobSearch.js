@@ -1,11 +1,10 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
-import Lgin from './Button/Lgin';
-import SignUp from './Button/SignUp';
-import Logout from './Button/Logout';
 import CreateJob from './Button/CreateJob';
 import Favorite from './Button/Favorite';
 import Details from './Button/Details';
+import Navbar from './Button/Navbar';
+import NavbarAdmin from './Button/NavbarAdmin';
 
 function App() {
   const [formInput, setFormInput] = useState('');
@@ -14,22 +13,14 @@ function App() {
   const [text, setText] = useState('Start Searching!');
 
   function checkLogin() {
-      axios.get('/api/users/whoIsLoggedIn')
-          .then(response => setLoginName(response.data))
+    axios.get('/api/users/whoIsLoggedIn')
+      .then(response => setLoginName(response.data))
   }
   useEffect(checkLogin, []);
 
-
-  const buttonComponent = loginName ?
-  (<>
-    <Favorite val={loginName}/>
-    <CreateJob/>
-    <Logout setLoginName={setLoginName}/>
-    {loginName}
-  </>) : (<>
-    <Lgin/>
-    <SignUp/>
-  </>)
+  const buttonComponent = loginName ? 
+  <NavbarAdmin name={loginName} setLoginName={setLoginName}/> :
+  <Navbar />
 
   const [allJob, setAllJob] = useState([]);
   function onSearchButtonClick() {
@@ -51,41 +42,46 @@ function App() {
       }]));
   }
 
-  const jobListComponent = allJob.length == 0 ? (<div>{text}</div>) :allJob.map(job => {
+  const jobListComponent = allJob.length == 0 ? (<div>{text}</div>) : allJob.map(job => {
     return (<>
       <div>
-      Job Name: {job.name}
+        Job Name: {job.name}
       </div>
       <div>
-      Job Title: {job.title}
+        Job Title: {job.title}
       </div>
       <div>
-      Job Location: {job.location}
+        Job Location: {job.location}
       </div>
-      <Details val = {job._id}/>
+      <Details val={job._id} />
     </>)
-})
+  })
 
   return (
-    <div class="input-group mb-3">
-      {errorMsg}
-      {buttonComponent}
-      <div class="input-group-prepend">
-        <input type='text' value={formInput}
-        onChange={(e) => {
-          setError(null);
-          setFormInput(e.target.value)
-        }} />
-        
-        <button 
-        class="btn btn-outline-secondary" type="button"
-        onClick={onSearchButtonClick}>
-          Search Jobs
-        </button>
+    <div>
+      <div class="input-group mb-3">
+        {errorMsg}
+        {buttonComponent}
       </div>
-      <div>{jobListComponent}</div>
-    </div>
+      <div>
+        <div class="input-group-prepend">
+          <input type='text' value={formInput}
+            onChange={(e) => {
+              setError(null);
+              setFormInput(e.target.value)
+            }} />
 
+          <button
+            class="btn btn-outline-secondary" type="button"
+            onClick={onSearchButtonClick}>
+            Search Jobs
+          </button>
+        </div>
+        <div>{jobListComponent}</div>
+      </div>
+      <Favorite val={loginName} />
+      <CreateJob />
+    </div>
   );
 }
 

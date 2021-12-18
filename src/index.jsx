@@ -10,11 +10,9 @@ import JobTracker from './JobTracker';
 import Login from './Login';
 import reportWebVitals from './reportWebVitals';
 import UpdateJob from './UpdateJob';
-import Navbar from './Button/Navbar';
 
 ReactDOM.render(
   <Router>
-    <Navbar />
     <Routes>
       <Route path="/" element={<JobSearch />} />
       <Route path="/signup" element={<Register />} />

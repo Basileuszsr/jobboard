@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import React, { useEffect, useState } from 'react';
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 
 export default function SetFav(props) {
     const navigate = useNavigate();

@@ -6,7 +6,6 @@ import Edit from './Button/Edit';
 import Favorite from './Button/Favorite';
 import SetFav from './Button/SetFav';
 import NoLoginFav from './Button/NoLoginFav';
-import { useNavigate } from 'react-router';
 
 export default function() {
     const jobName = useParams().jobName;

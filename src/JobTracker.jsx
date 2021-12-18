@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import NavbarAdmin from './Button/NavbarAdmin';
 
 export default function JobTracker(props) {
     const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function JobTracker(props) {
 
     return (
         <div>
+            <NavbarAdmin />
             {errorMsg}
             <h5>Job Name:</h5>
             <input value={jobForm.name} 
