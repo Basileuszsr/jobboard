@@ -46,7 +46,7 @@ export default function UpdateJob(props) {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        marginTop: '5px'
+                        marginTop: '20px'
                     }}
                 >
                     <Card border="primary" style={{
