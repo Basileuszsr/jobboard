@@ -8,7 +8,6 @@ export default function Details(props) {
   const link = '/list/' + name;
   console.log(link);
   return <>
-    <NavbarHome />
     <button onClick={() => {
       navigate(link);
     }

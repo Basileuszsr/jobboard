@@ -16,10 +16,10 @@ export default function Navbar(props) {
             height="70"
           />{' '}
         </ReactBootStrap.Navbar.Brand>
+        <ReactBootStrap.Nav.Link href="/">Home</ReactBootStrap.Nav.Link>
         <ReactBootStrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
         <ReactBootStrap.Navbar.Collapse id="basic-navbar-nav">
           <ReactBootStrap.Nav className="me-auto">
-            <ReactBootStrap.Nav.Link href="/">Home</ReactBootStrap.Nav.Link>
             <ReactBootStrap.Nav.Link href="/login">Log In</ReactBootStrap.Nav.Link>
             <ReactBootStrap.Nav.Link href="/signup">Sign Up</ReactBootStrap.Nav.Link>
             <ReactBootStrap.Nav.Link

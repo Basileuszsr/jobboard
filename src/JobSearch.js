@@ -22,39 +22,45 @@ function App() {
   }
   useEffect(checkLogin, []);
 
-  function onSearchButtonClick() {
+  function onSearchButtonClick(e) {
+    e.preventDefault();
+    console.log(formInput)
     if (!formInput) {
       setError("You must type in a Job name.");
       return;
     }
     axios.get('/api/job/findAllByName/' + formInput)
       .then(response => {
-        setAllJob(response.data);
         if (response.data.length === 0) {
           setText('No results');
+        } else {
+          setAllJob(response.data);
         }
       })
-      .catch(error => setAllJob([{
-        name: "No job found",
-        title: '',
-        location: '',
-      }]));
+      .catch(error => {
+        console.log(error)
+        setAllJob([{
+          name: "No job found",
+          title: '',
+          location: '',
+          id: '',
+        }])
+      });
   }
 
   const jobListComponent = allJob.length == 0 ? (
-  <tr>
-    <td>
-      {text}
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
-  </tr>
+    <tr>
+      <td>
+        {text}
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
   ) : allJob.map(job => {
-    console.log(allJob.length)
     return (
       <tr>
         <td>
@@ -81,15 +87,16 @@ function App() {
           <Form.Group>
             <Form.Control type="text" placeholder="Job Key Word"
               onChange={e => {
+                console.log(formInput)
                 setFormInput(e.target.value)
               }} />
-            <Button type="submit" onClick={onSearchButtonClick}>Search</Button>
+            <Button type="submit" onClick={e => onSearchButtonClick(e)}>Search</Button>
           </Form.Group>
           <Container>
             {errorMsg}
           </Container>
         </Form>
-        <Table striped bordered >
+        <Table>
           <thead>
             <tr>
               <th>Job Name</th>

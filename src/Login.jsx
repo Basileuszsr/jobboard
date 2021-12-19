@@ -54,8 +54,8 @@ export default (props) => {
                             }
                             axios.post('/api/users/authenticate', userData)
                                 .then(response => {
-                                    navigate("/")
                                     console.log(response)
+                                    navigate("/")
                                 })
                                 .catch(error => setError("Account doesn't Exists."));
                         }}
