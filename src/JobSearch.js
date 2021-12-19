@@ -50,6 +50,7 @@ function App() {
   }
 
   const fav = loginName ? <Favorite val={loginName} /> : <></>
+  const create = loginName ? <CreateJob /> : <></>
 
   const jobListComponent = allJob.length == 0 ? (
     <tr>
@@ -113,7 +114,7 @@ function App() {
           </tbody>
         </Table>
         {fav}
-        <CreateJob />
+        {create}
       </Container>
     </>
   );

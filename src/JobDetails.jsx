@@ -30,7 +30,6 @@ export default function() {
     </>) : (<div>Not your Job</div>);
     const jobComponent = job ? 
         (<>
-        <Favorite val={loginName}/>
         <div>
            Job owner: {job.owner} 
         </div>
@@ -54,8 +53,10 @@ export default function() {
         </div></>) :
         (<div> No Job found </div>);
     const setFavComponent = (job != null && loginName != '') ? (<SetFav val={job} name={loginName}/>) : (<NoLoginFav />);
+    const fav = (job != null && loginName != '') ? <Favorite val={loginName}/> : <></>
     return (<>
         <NavbarHome />
+        {fav}
         <div>
             {jobComponent}
         </div>
