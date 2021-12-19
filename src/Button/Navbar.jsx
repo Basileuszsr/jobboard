@@ -2,7 +2,7 @@ import React from 'react';
 import axios, { Axios } from 'axios';
 import * as ReactBootStrap from "react-bootstrap";
 import { Row } from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
+import Logout from './Logout';
 
 export default function Navbar(props) {
   if (props.name) {
@@ -21,16 +21,7 @@ export default function Navbar(props) {
           <ReactBootStrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
           <ReactBootStrap.Navbar.Collapse id="basic-navbar-nav">
             <ReactBootStrap.Nav className="me-auto">
-              <ReactBootStrap.Nav.Link
-                href="/"
-                onClick={
-                  () => {
-                    axios.post('/api/users/logout')
-                      .then(() => props.setLoginName(null))
-                      .catch(console.error)
-                  }
-                }>Logout
-              </ReactBootStrap.Nav.Link>
+              <Logout setLoginName={props.setLoginName} />
             </ReactBootStrap.Nav>
           </ReactBootStrap.Navbar.Collapse>
         </ReactBootStrap.Navbar>
