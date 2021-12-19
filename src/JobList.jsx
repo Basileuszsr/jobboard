@@ -12,7 +12,7 @@ export default function JobList() {
     function findAllJob() {
         console.log("We could find now!");
         console.log(loginName);
-        axios.get('http://localhost:8000/api/users/' + loginName)
+        axios.get('/api/users/' + loginName)
             .then(response => {
                 console.log("We load now!");
                 console.log(response.data.favorites);

@@ -14,7 +14,7 @@ export default function () {
     const [job, setJob] = useState(null);
     const [loginName, setLoginName] = useState('');
     function findJobDetails() {
-        axios.get('http://localhost:8000/api/job/find/' + jobName)
+        axios.get('/api/job/find/' + jobName)
             .then(response => setJob(response.data))
             .catch(error => console.log("Could not find Job"));
     }
