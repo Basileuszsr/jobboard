@@ -102,5 +102,7 @@ export default function SetFav(props) {
             setText('Like');
         }
     }
-    return (<button onClick={onLikeButtonClick}>{text}</button>);
+    return (<button 
+        class="btn btn-primary btn-block"
+        onClick={onLikeButtonClick}>{text}</button>);
 }

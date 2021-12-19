@@ -94,7 +94,8 @@ function App() {
                 console.log(formInput)
                 setFormInput(e.target.value)
               }} />
-            <Button type="submit" onClick={e => onSearchButtonClick(e)}>Search</Button>
+            <Button type="submit"
+            onClick={e => onSearchButtonClick(e)}>Search</Button>
           </Form.Group>
           <Container>
             {errorMsg}

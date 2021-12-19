@@ -5,7 +5,9 @@ import axios from 'axios';
 export default function Delete(props) {
     const navigate = useNavigate();
     const name = props.val;
-    return (<button onClick={() => {
+    return (<button 
+      class="btn btn-primary btn-block"
+      onClick={() => {
       axios.delete('http://localhost:8000/api/job/delete/' + name)
             .catch(error => console.log("Could not find Job"));
       navigate('/');

@@ -8,7 +8,9 @@ export default function Details(props) {
   const link = '/list/' + name;
   console.log(link);
   return <>
-    <button onClick={() => {
+    <button 
+      class="btn btn-sm btn-primary"
+      onClick={() => {
       navigate(link);
     }
     }>Details</button>
