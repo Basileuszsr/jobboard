@@ -18,6 +18,7 @@ export default function Navbar(props) {
             />{' '}
           </ReactBootStrap.Navbar.Brand>
           <ReactBootStrap.Nav.Link href="/">Home</ReactBootStrap.Nav.Link>
+          <ReactBootStrap.Nav.Item>{"Welcome, " + props.name}</ReactBootStrap.Nav.Item>
           <ReactBootStrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
           <ReactBootStrap.Navbar.Collapse id="basic-navbar-nav">
             <ReactBootStrap.Nav className="me-auto">
