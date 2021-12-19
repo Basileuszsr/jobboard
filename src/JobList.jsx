@@ -26,18 +26,26 @@ export default function JobList() {
     }
     useEffect(findAllJob, []);
 
-    const jobListComponent = newJob.length !== 0 ? newJob.map(job => {
-        return (<>
-            <Container >
-                <Row
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginTop: '5px'
-                    }}
-                >
-                    <Card border="primary" style={{ width: '18rem' }} >
+    const jobListComponent = newJob.length !== 0 ?
+        <Row xs={1} md={2} className="g-4"
+            style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: '5px',
+            }}>
+            {newJob.map((job, index) => {
+                return (
+                    <Card
+                        border="primary"
+                        style={{ 
+                            width: '25rem', 
+                            paddingLeft: '0px', 
+                            paddingRight: '0px', 
+                            margin: '10px'
+                        }}
+                        key={index}
+                        className="box">
                         <Card.Header>Favorite Jobs</Card.Header>
                         <Card.Body>
                             <Card.Title>{job.title}</Card.Title>
@@ -56,11 +64,9 @@ export default function JobList() {
                             </Card.Text>
                             <Details val={job._id} />
                         </Card.Body>
-                    </Card>
-                </Row>
-            </Container>
-        </>)
-    }) : (<div>No Favorites</div>);
+                    </Card>)
+            })}
+        </Row> : (<div>No Favorites</div>);
 
     return (
         <div>
