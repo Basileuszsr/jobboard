@@ -5,8 +5,11 @@ import axios from 'axios';
 
 export default function Logout(props) {
     const navigate = useNavigate();
-    return (<button onClick={() => axios.post('/api/users/logout')
-    .then(() => props.setLoginName(null))
-    .catch(console.error)
+    return (<button onClick={e => {
+      e.preventDefault();
+      axios.post('/api/users/logout')
+      .then(() => props.setLoginName(null))
+      .catch(console.error)
+    }
   }>Logout</button>);
 }
