@@ -58,7 +58,9 @@ export default (props) => {
                                     console.log(response)
                                     navigate("/")
                                 })
-                                .catch(error => setError("Account doesn't Exists."));
+                                .catch(error => {
+                                    setError("Username or Password is incorrect!")
+                                });
                         }}
                     >Login</button>
                 </form>
