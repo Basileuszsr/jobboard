@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import NavbarHome from './Button/NavbarHome';
+import { Row, Col } from 'react-bootstrap';
 
 function App() {
   const [formInput, setFormInput] = useState('');
@@ -104,7 +105,7 @@ function App() {
         <Table>
           <thead>
             <tr>
-              <th>Job Name</th>
+              <th>Company</th>
               <th>Job Title</th>
               <th>Job Location</th>
               <th>Details</th>
@@ -114,8 +115,10 @@ function App() {
             {jobListComponent}
           </tbody>
         </Table>
-        {fav}
-        {create}
+        <Row xs="auto">
+          <Col>{fav}</Col>
+          <Col>{create}</Col>
+        </Row>
       </Container>
     </>
   );

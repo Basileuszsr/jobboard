@@ -7,10 +7,7 @@ import Favorite from './Button/Favorite';
 import SetFav from './Button/SetFav';
 import NoLoginFav from './Button/NoLoginFav';
 import NavbarHome from './Button/NavbarHome';
-// import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
-// import Container from 'react-bootstrap/Container';
-import { Container, Row, Card, Button } from "react-bootstrap";
+import { Container, Row, Card, Button, Col } from "react-bootstrap";
 
 export default function () {
     const jobName = useParams().jobName;
@@ -27,13 +24,17 @@ export default function () {
             .then(response => setLoginName(response.data))
     }
     useEffect(checkLogin, []);
-    const setFavComponent = (job != null && loginName != '') ? (<SetFav val={job} name={loginName} />) : (<NoLoginFav />);
+    const setFavComponent = (job != null && loginName != '') ?
+        (<Col><SetFav val={job} name={loginName} /></Col>) :
+        (<Col><NoLoginFav /></Col>);
     const fav = (job != null && loginName != '') ? <Favorite val={loginName} /> : <></>
     const delEditComponent =
-        (job != null && loginName == job.owner) ? (<>
-            <Edit val={job._id} />
-            <Delete val={job._id} />
-        </>) : <></>;
+        (job != null && loginName == job.owner) ? (
+            <>
+                <Col><Edit val={job._id} isUpdate="true" /></Col>
+                <Col><Delete val={job._id} /></Col>
+            </>
+        ) : <></>;
     const jobComponent = job ?
         (<>
 
@@ -46,13 +47,16 @@ export default function () {
                         marginTop: '5px'
                     }}
                 >
-
-                    <Card border="primary" style={{ width: '18rem' }} >
+                    <Card border="primary" style={{
+                        width: '24rem',
+                        paddingLeft: '0px',
+                        paddingRight: '0px'
+                    }} >
                         <Card.Header>Job Details</Card.Header>
                         <Card.Body>
                             <Card.Title>{job.title}</Card.Title>
                             <Card.Text>
-                                Job owner: {job.owner}
+                                Company: {job.owner}
                                 <br />
                                 Job title: {job.name}
                                 <br />
@@ -64,7 +68,12 @@ export default function () {
                                 <br />
                                 Posting Date: {job.pDate}
                             </Card.Text>
-                            {setFavComponent}
+                            <Container>
+                                <Row className="justify-content-md-center">
+                                    {setFavComponent}
+                                    {delEditComponent}
+                                </Row>
+                            </Container>
                         </Card.Body>
                     </Card>
                 </Row>
@@ -79,47 +88,8 @@ export default function () {
         <>
             <NavbarHome />
             <Container fluid>
-
-                <div>
-                    {jobComponent}
-                </div>
-                <div>
-                    {delEditComponent}
-                </div>
-
+                {jobComponent}
             </Container>
-
         </>
     )
 }
-
-{/* <div>
-
-
-          <Container className="justify-content-md-center">
-                <Row md="auto">
-                </Row>
-
-            </Container>
-
-
-                Job owner: {job.owner}
-            </div>
-            <div>
-                Job title: {job.title}
-            </div>
-            <div>
-                Job Name: {job.name}
-            </div>
-            <div>
-                Job Location: {job.location}
-            </div>
-            <div>
-                Job Description: {job.description}
-            </div>
-            <div>
-                Email: {job.email}
-            </div>
-            <div>
-                Posting Date: {job.pDate}
-            </div></>) */}

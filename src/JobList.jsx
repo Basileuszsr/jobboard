@@ -42,7 +42,7 @@ export default function JobList() {
                         <Card.Body>
                             <Card.Title>{job.title}</Card.Title>
                             <Card.Text>
-                                Job Name: {job.name}
+                                Company: {job.name}
                                 <br />
                                 Job Title: {job.title}
                                 <br />
