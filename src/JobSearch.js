@@ -87,7 +87,10 @@ function App() {
   return (
     <>
       <Navbar name={loginName} setLoginName={setLoginName} />
-      <Container>
+      <p></p>
+      <Container stype={{
+        margin: "10px"
+      }}>
         <Form>
           <Form.Group>
             <Form.Control type="text" placeholder="Job Key Word"
@@ -95,8 +98,9 @@ function App() {
                 console.log(formInput)
                 setFormInput(e.target.value)
               }} />
+            <p></p>
             <Button type="submit"
-            onClick={e => onSearchButtonClick(e)}>Search</Button>
+              onClick={e => onSearchButtonClick(e)}>Search</Button>
           </Form.Group>
           <Container>
             {errorMsg}
@@ -115,6 +119,7 @@ function App() {
             {jobListComponent}
           </tbody>
         </Table>
+        <p></p>
         <Row xs="auto">
           <Col>{fav}</Col>
           <Col>{create}</Col>
