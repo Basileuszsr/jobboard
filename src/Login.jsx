@@ -14,7 +14,7 @@ export default (props) => {
     const [errorMsg, setError] = useState('');
     const [loggedInName, setLoggedInName] = useState('');
     return (
-        <div id="main">
+        <>
             <NavbarHome />
             <div class="text-center">
                 <form class="form-signin">
@@ -43,7 +43,8 @@ export default (props) => {
                         }} type='password' />
                     <button
                         class="btn btn-lg btn-primary btn-block" type="submit"
-                        onClick={() => {
+                        onClick={e => {
+                            e.preventDefault();
                             if (!userData.username) {
                                 setError("You must type in a username.");
                                 return;
@@ -62,6 +63,6 @@ export default (props) => {
                     >Login</button>
                 </form>
             </div>
-        </div>
+        </>
     );
 }

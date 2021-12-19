@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import NavbarHome from './Button/NavbarHome';
 
 function App() {
   const [formInput, setFormInput] = useState('');
@@ -47,6 +48,8 @@ function App() {
         }])
       });
   }
+
+  const fav = loginName ? <Favorite val={loginName} /> : <></>
 
   const jobListComponent = allJob.length == 0 ? (
     <tr>
@@ -109,7 +112,7 @@ function App() {
             {jobListComponent}
           </tbody>
         </Table>
-        <Favorite val={loginName} />
+        {fav}
         <CreateJob />
       </Container>
     </>
